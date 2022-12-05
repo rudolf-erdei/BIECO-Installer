@@ -17,3 +17,17 @@ U: **admin@admin.com**
 
 P: **administrator**
 
+## Interaction between platform components
+
+The Docker Application will provide a volume that will enable all Tools to use the same directories for storage.
+In this regard, the /platform subdirectory of the bieco-data volume will contain sepparate directories
+for all of the jobs in the sistem (based on the job ID). If any tool requires common files, these can be saved
+or loaded from this directory.
+
+Accessing a dockerized Tool is possible using the image name and the internal port. For example, the
+URL for the BIECO Orchestrator will be: **http://bieco-orchestrator:4000/orchestrator/biecointerface** where
+**bieco-orchestrator** is the image name and **4000** is the internal port. The mapped port is needed only for outside
+access (outside the **bieco-net** network).
+
+Tool Developers are advised to put URL's and ports as parameters that can be set by docker compose, so that the
+platform will be flexible enough.
