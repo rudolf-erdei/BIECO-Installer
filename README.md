@@ -8,4 +8,5 @@ Welcome to the ***BIECO Platform Installer Repository***. This *Docker Compose Y
 The platform will be installed with all the needed information, including the schema and content of the database. The username and password are:
 
 U: **admin@admin.com**
+
 P: **administrator**
