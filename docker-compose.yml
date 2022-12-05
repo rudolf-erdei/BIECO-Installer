@@ -1,0 +1,117 @@
+# docker compose up
+version: "3.9"
+name: bieco-platform
+services:
+    bieco-mysql:
+        image: mysql:5.7.33
+        restart: unless-stopped
+        networks:
+            - bieco-net
+        # DB ports are only used in debugging, the db should not be available
+        # in the production environment. todo disable this in production
+        ports:
+            - "${DB_PUBLIC_PORT}:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - bieco-data:/var/lib/mysql
+            - ./mysql-schema:/docker-entrypoint-initdb.d
+        
+    bieco-orchestrator:
+        image: holisun/bieco-orchestrator:0.2.0
+        ports:
+            - "${ORCHESTRATOR_PUBLIC_PORT}:4000"
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                "bieco.ui.url" : "http://bieco-ui:8080/ui/biecointerface",
+                "spring.datasource.url"  : "jdbc:mysql://bieco-mysql:3306/${DB_DATABASE}?useSSL=false",
+                "spring.datasource.username" : "${DB_USER}",
+                "spring.datasource.password" : "${DB_PASSWORD}",
+                "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+                "spring.jpa.hibernate.ddl-auto" : "none"}'
+        restart: unless-stopped
+        volumes:
+            - bieco-data:/platform  # /[id-of-job]/
+        depends_on:
+            - bieco-mysql
+        networks:
+            - bieco-net
+    
+    bieco-ui:
+        image: holisun/bieco-ui:0.2.0
+        ports:
+            - "${UI_PUBLIC_PORT}:8080"
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                "bieco.orchestrator.url" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
+                "bieco.ui.token" : "LSE7oweb87vowe87",
+                "bieco.orchestrator.token" : "iVBQ#L;*4a5o78",
+                "bieco.platform.version" : "1.3.2",
+                "bieco.licenseServerUrl" : "http://bieco-license-server.local/api/v1/validate",
+
+                "spring.datasource.url"  : "jdbc:mysql://bieco-mysql:3306/${DB_DATABASE}?useSSL=false",
+                "spring.datasource.username" : "${DB_USER}",
+                "spring.datasource.password" : "${DB_PASSWORD}",
+                "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+                "spring.jpa.hibernate.ddl-auto" : "none",
+                
+                "spring.mail.host" : "${EMAIL_HOST}",
+                "spring.mail.port" : "${EMAIL_PORT}",
+                "spring.mail.username" : "${EMAIL_USERNAME}",
+                "spring.mail.password" : "${EMAIL_PASSWORD}",
+                "spring.mail.properties.mail.smtp.auth" : "${SMTP_AUTH}",
+                "spring.mail.properties.mail.smtp.starttls.enable" : "${SMTP_STARTTLS_ENABLE}"}'
+        restart: unless-stopped
+        volumes:
+            - bieco-data:/platform
+        depends_on:
+            - bieco-mysql
+            - bieco-orchestrator
+        networks:
+            - bieco-net
+
+    mock-tool:
+        image: holisun/mock-tool:0.2.0
+        ports:
+            - 4500:8080
+        restart: unless-stopped
+        networks:
+            - bieco-net
+    
+    ps_prototype:
+        image: emiliacioroaica/ps_prototype:latest
+        depends_on:
+            - activemq
+
+    activemq:
+        image: rmohr/activemq:latest
+        ports:
+            - 1883:1883
+            - 5672:5672
+            - 8161:8161
+            - 61613:61613
+            - 61614:61614
+            - 61616:61616
+        volumes:
+            - bieco-data:/activemq
+
+    # activemq:  # tutorial: https://huongdanjava.com/install-apache-activemq-using-docker-compose.html
+    #     image: symptoma/activemq:latest
+    #     ports:
+    #         - "${ACTIVEMQ_PUBLIC_PORT}:61616"
+    #         - "${ACTIVEMQ_ADMIN_PORT}:8161"
+    #     volumes:
+    #         - bieco-data:/activemq
+    #         - ./activemq/data:/data/activemq
+    #         - ./activemq/log:/var/log/activemq
+
+volumes:
+    bieco-data:
+networks:
+  bieco-net:
+    name: bieco-net
+    driver: bridge
+    external: false
