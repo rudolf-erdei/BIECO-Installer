@@ -5,8 +5,15 @@ Welcome to the ***BIECO Platform Installer Repository***. This *Docker Compose Y
 
 [Official Website for the BIECO Research Project](https://bieco.org)
 
+## Installing the Platform
+
+You can install the platform using Docker Compose, with the shell command: **docker compose up**
+
+## Default user for the Platform
+
 The platform will be installed with all the needed information, including the schema and content of the database. The username and password are:
 
 U: **admin@admin.com**
 
 P: **administrator**
+
