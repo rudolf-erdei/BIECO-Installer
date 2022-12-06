@@ -155,12 +155,12 @@ CREATE TABLE `uitool` (
 
 LOCK TABLES `uitool` WRITE;
 /*!40000 ALTER TABLE `uitool` DISABLE KEYS */;
-INSERT INTO `uitool` (`title`,`url`) VALUES
-  ('Data Collection Tool','https://dct.bieco.org'),
-  ('Vulnerabilities Forecasting Tool','http://vf.bieco.org'),
-  ('GraphWalker Studio','http://155.54.210.200:9090/studio.html'),
-  ('Test Suite Generator','http://155.54.210.200:5555/'),
-  ('MUD Updater','http://155.54.210.200:5555/updater');
+INSERT INTO `uitool` (`id`, `title`,`url`) VALUES
+  (1, 'Data Collection Tool','https://dct.bieco.org'),
+  (2, 'Vulnerabilities Forecasting Tool','http://vf.bieco.org'),
+  (3, 'GraphWalker Studio','http://155.54.210.200:9090/studio.html'),
+  (4, 'Test Suite Generator','http://155.54.210.200:5555/'),
+  (5, 'MUD Updater','http://localhost:5555/updater');
 /*!40000 ALTER TABLE `uitool` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,8 @@ LOCK TABLES `tool` WRITE;
 INSERT INTO `tool` VALUES 
 (4, b'0', b'1','https://api.dct.bieco.org/ils/','ajw4gti43yugtlai3k43yg','99998a72-ede0-11eb-9f9b-110eb294d8b7','Data Collection Tool','Technical University of Cluj-Napoca, Romania','The Data Collection Tool is a web application that represents the implementation support for the DSV. It has a RESTful API for communicating with the other BIECO tools, and a web user interface. The following sections contain a detailed description of the DCT architecture, the DSV information structure, the API specification and the user interface. ',1,1,1,2, b'0'),
 (5, b'0', b'1','http://bieco-ui:8080/ui/biecointerface','iVBQ#L;*4a5o78','LSE7oweb87vowe87','Bieco UI','HOLISUN SRL','The UI for the BIECO Platform',1,0,1,1, b'0'),
-(6, b'0', b'1','http://mock-tool:8080/mock/biecointerface','rK6ILPiurtfFV','JAD7A6WAD454AS33AF4','Holisun Mock Tool','Holisun','Mock',1,0,0,3,b'0');
+(6, b'0', b'1','http://mock-tool:8080/mock/biecointerface','rK6ILPiurtfFV','JAD7A6WAD454AS33AF4','Holisun Mock Tool','Holisun','Mock',1,0,0,3,b'0'),
+(7, b'0', b'1','http://security-scorer:4500/mock/biecointerface','rK6ILPiurtfFV','JAD7A6WAD454AS33AF4','Security Scorer','7bulls','Security Scorer - initial configuration try',1,0,0,3,b'0');
 /*!40000 ALTER TABLE `tool` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -2,6 +2,8 @@
 version: "3.9"
 name: bieco-platform
 services:
+    # ---- BIECO Platform (HS) ----
+    # Database for the platform
     bieco-mysql:
         image: mysql:5.7.33
         restart: unless-stopped
@@ -19,7 +21,7 @@ services:
         volumes:
             - bieco-data:/var/lib/mysql
             - ./mysql-schema:/docker-entrypoint-initdb.d
-        
+    # Orchestrator component
     bieco-orchestrator:
         image: holisun/bieco-orchestrator:0.2.0
         ports:
@@ -39,7 +41,7 @@ services:
             - bieco-mysql
         networks:
             - bieco-net
-    
+    # UI Component for the platform
     bieco-ui:
         image: holisun/bieco-ui:0.2.0
         ports:
@@ -73,14 +75,15 @@ services:
         networks:
             - bieco-net
 
-    mock-tool:
-        image: holisun/mock-tool:0.2.0
-        ports:
-            - 4500:8080
-        restart: unless-stopped
-        networks:
-            - bieco-net
+#    mock-tool:  # only used for testing 
+#        image: holisun/mock-tool:0.2.0
+#        ports:
+#            - 4500:8080
+#        restart: unless-stopped
+#        networks:
+#            - bieco-net
     
+    # ---- Predictive Simulation (IESE) ----
     ps_prototype:
         image: emiliacioroaica/ps_prototype:latest
         depends_on:
@@ -89,11 +92,11 @@ services:
     activemq:
         image: rmohr/activemq:latest
         ports:
-            - 1883:1883
-            - 5672:5672
+#            - 1883:1883  # enable only if needed
+#            - 5672:5672  # enable only if needed
             - 8161:8161
-            - 61613:61613
-            - 61614:61614
+#            - 61613:61613  # enable only if needed
+#            - 61614:61614  # enable only if needed
             - 61616:61616
         volumes:
             - bieco-data:/activemq
@@ -107,6 +110,30 @@ services:
     #         - bieco-data:/activemq
     #         - ./activemq/data:/data/activemq
     #         - ./activemq/log:/var/log/activemq
+
+    # ---- Security Scorer (7B) ----
+    api:
+        image: rpiliszek7b/bieco_security_scorer_api:latest
+        read_only: true
+
+    security-scorer:
+        image: rpiliszek7b/bieco_security_scorer_integrator:latest
+        read_only: true
+        environment:
+            ORCHESTRATOR_TOKEN: rK6ILPiurtfFV
+            ORCHESTRATOR_URL: http://bieco-orchestrator:4000/orchestrator/biecointerface
+            INTEGRATOR_TOKEN: JAD7A6WAD454AS33AF4
+            TOOL_URL: http://api:8000/estimate_risk
+        tmpfs:
+            - /tmp
+
+
+    # ---- MUD Updater (UMU) ----
+    mud-updater:
+        image: dridix/umu-bieco:umu-image
+        ports:
+            - 5555:5555
+
 
 volumes:
     bieco-data:

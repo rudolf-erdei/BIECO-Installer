@@ -31,3 +31,9 @@ access (outside the **bieco-net** network).
 
 Tool Developers are advised to put URL's and ports as parameters that can be set by docker compose, so that the
 platform will be flexible enough.
+
+## Database usage
+An instance of MySQL (currently version 5.7.33) comes preinstalled within the system.
+If needed, 
+
+## Integration and ActiveMQ Usage
