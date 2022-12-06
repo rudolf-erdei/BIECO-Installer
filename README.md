@@ -34,6 +34,8 @@ platform will be flexible enough.
 
 ## Database usage
 An instance of MySQL (currently version 5.7.33) comes preinstalled within the system.
-If needed, 
+If needed, it can be used, but please create a different database.
 
 ## Integration and ActiveMQ Usage
+
+An instance of ActiveMQ comes preinstalled, as a requirement for some tools. If needed, please use the same instance.
