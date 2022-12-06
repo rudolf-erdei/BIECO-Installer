@@ -84,7 +84,7 @@ services:
 #            - bieco-net
     
     # ---- Predictive Simulation (IESE) ----
-    ps_prototype:
+    predictive-simulation:
         image: emiliacioroaica/ps_prototype:latest
         depends_on:
             - activemq
