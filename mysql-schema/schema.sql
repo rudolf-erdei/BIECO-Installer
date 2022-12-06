@@ -179,7 +179,7 @@ INSERT INTO `tool` VALUES
 (5, b'0', b'1','http://bieco-ui:8080/ui/biecointerface','iVBQ#L;*4a5o78','LSE7oweb87vowe87','Bieco UI','HOLISUN SRL','The UI for the BIECO Platform',1,0,1,1, b'0'),
 (6, b'0', b'1','http://mock-tool:8080/mock/biecointerface','rK6ILPiurtfFV','JAD7A6WAD454AS33AF4','Holisun Mock Tool','Holisun','Mock',1,0,0,3,b'0'),
 (7, b'0', b'1','http://security-scorer:4500/mock/biecointerface','rK6ILPiurtfFV','JAD7A6WAD454AS33AF4','Security Scorer','7bulls','Security Scorer - initial configuration try',1,0,0,3,b'0'),
-(8, b'0', b'1','http://predictive-simulation:8080/biecointerface','','', 'Predictive Simulation', 'IESE', 'Initial Testing of the Predictive Simulation',1,0,0,3,b'0');
+(8, b'0', b'1','http://predictive-simulation:4600/biecointerface','','', 'Predictive Simulation', 'IESE', 'Initial Testing of the Predictive Simulation',1,0,0,3,b'0');
 /*!40000 ALTER TABLE `tool` ENABLE KEYS */;
 UNLOCK TABLES;
 

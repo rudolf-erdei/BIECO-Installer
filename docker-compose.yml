@@ -38,7 +38,7 @@ services:
         volumes:
             - bieco-data:/platform  # /[id-of-job]/
         depends_on:
-            - bieco-mysql
+            - "bieco-mysql"
         networks:
             - bieco-net
     # UI Component for the platform
@@ -70,8 +70,8 @@ services:
         volumes:
             - bieco-data:/platform
         depends_on:
-            - bieco-mysql
-            - bieco-orchestrator
+            - "bieco-mysql"
+            - "bieco-orchestrator"
         networks:
             - bieco-net
 
@@ -87,7 +87,7 @@ services:
     predictive-simulation:
         image: emiliacioroaica/ps_prototype:latest
         depends_on:
-            - activemq
+            - "activemq"
 
     activemq:
         image: rmohr/activemq:latest
@@ -132,7 +132,7 @@ services:
     mud-updater:
         image: dridix/umu-bieco:umu-image
         ports:
-            - 5555:5555
+            - "5555:5555"
 
 
 volumes:
