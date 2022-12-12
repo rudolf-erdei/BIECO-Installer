@@ -92,12 +92,12 @@ services:
     activemq:
         image: rmohr/activemq:latest
         ports:
-#            - 1883:1883  # enable only if needed
-#            - 5672:5672  # enable only if needed
-            - 8161:8161
-#            - 61613:61613  # enable only if needed
-#            - 61614:61614  # enable only if needed
-            - 61616:61616
+#            - "1883:1883"  # enable only if needed
+#            - "5672:5672"  # enable only if needed
+            - "8161:8161"
+#            - "61613:61613"  # enable only if needed
+#            - "61614:61614"  # enable only if needed
+            - "61616:61616"
         volumes:
             - bieco-data:/activemq
 
