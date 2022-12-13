@@ -88,6 +88,12 @@ services:
         image: emiliacioroaica/ps_prototype:latest
         depends_on:
             - "activemq"
+        restart: unless-stopped
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                "orchestratorToken" : "6sdQpBgkrL6yu",
+                "orchestratorUrl" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
+                "token" : "32z27348127482371kk8(())=)=)(=))(76hgh))"}'
 
     activemq:
         image: rmohr/activemq:latest
