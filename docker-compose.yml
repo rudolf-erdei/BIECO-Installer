@@ -89,6 +89,8 @@ services:
         depends_on:
             - "activemq"
         restart: unless-stopped
+        networks:
+            - bieco-net
         environment:
             SPRING_APPLICATION_JSON: '{
                 "orchestratorToken" : "6sdQpBgkrL6yu",
@@ -106,6 +108,8 @@ services:
             - "61616:61616"
         volumes:
             - bieco-data:/activemq
+        networks:
+            - bieco-net
 
     # activemq:  # tutorial: https://huongdanjava.com/install-apache-activemq-using-docker-compose.html
     #     image: symptoma/activemq:latest
@@ -121,7 +125,9 @@ services:
     api:
         image: rpiliszek7b/bieco_security_scorer_api:latest
         read_only: true
-
+        networks:
+            - bieco-net
+        
     security-scorer:
         image: rpiliszek7b/bieco_security_scorer_integrator:latest
         read_only: true
@@ -132,6 +138,8 @@ services:
             TOOL_URL: http://api:8000/estimate_risk
         tmpfs:
             - /tmp
+        networks:
+            - bieco-net
 
 
     # ---- MUD Updater (UMU) ----
@@ -139,6 +147,8 @@ services:
         image: dridix/umu-bieco:umu-image
         ports:
             - "5555:5555"
+        networks:
+            - bieco-net
 
 
 volumes:
