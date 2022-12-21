@@ -100,11 +100,11 @@ services:
     activemq:
         image: rmohr/activemq:latest
         ports:
-#            - "1883:1883"  # enable only if needed
-#            - "5672:5672"  # enable only if needed
+            - "1883:1883"  # enable only if needed
+            - "5672:5672"  # enable only if needed
             - "8161:8161"
-#            - "61613:61613"  # enable only if needed
-#            - "61614:61614"  # enable only if needed
+            - "61613:61613"  # enable only if needed
+            - "61614:61614"  # enable only if needed
             - "61616:61616"
         volumes:
             - bieco-data:/activemq
@@ -141,6 +141,43 @@ services:
         networks:
             - bieco-net
 
+
+    # ---- FUZZING TOOL (GRADIANT) ----
+    fuzzing-db:
+        image: mysql:5.7
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: 'fuzzing'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        # ports:
+        #     - '3306:3306'
+        networks:
+            - bieco-net
+        volumes:
+            - /tmp/mysql:/var/lib/mysql
+
+    fuzzing-tool:
+        image: harbor.gradiant.org/syp-bieco-pr-01333/fuzzing-tool:latest
+        read_only: true
+        restart: unless-stopped
+        environment:
+            TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
+            ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
+            ORCHESTRATOR_URL: http://bieco-orchestrator:4000
+            ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
+            FUZZDB_DRIVER: mysql+asyncmy
+            FUZZDB_HOST: fuzzing-db
+            FUZZDB_PORT: 3306
+            FUZZDB_USER: root
+            FUZZDB_PASSWORD: ${DB_PASSWORD}
+            API-AUTHORIZATION-BEARER-TOKEN: Bearer token-here
+        depends_on:
+            - fuzzing-db
+            - bieco-orchestrator
+        networks:
+            - bieco-net
 
     # ---- MUD Updater (UMU) ----
     mud-updater:
