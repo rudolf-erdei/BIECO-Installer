@@ -1,7 +1,3 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
---
--- Host: localhost    Database: biecoplatform
--- ------------------------------------------------------
 -- Server version	5.7.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -156,11 +152,11 @@ CREATE TABLE `uitool` (
 LOCK TABLES `uitool` WRITE;
 /*!40000 ALTER TABLE `uitool` DISABLE KEYS */;
 INSERT INTO `uitool` (`id`, `title`,`url`) VALUES
-  (1, 'Data Collection Tool','https://dct.bieco.org'),
-  (2, 'Vulnerabilities Forecasting Tool','http://vf.bieco.org'),
-  (3, 'GraphWalker Studio','http://155.54.210.200:9090/studio.html'),
-  (4, 'Test Suite Generator','http://155.54.210.200:5555/'),
-  (5, 'MUD Updater','http://localhost:5555/updater');
+(1, 'Data Collection Tool','https://dct.bieco.org'),
+(2, 'Vulnerabilities Forecasting Tool','http://vf.bieco.org'),
+(3, 'GraphWalker Studio','http://155.54.210.200:9090/studio.html'),
+(4, 'Test Suite Generator','http://155.54.210.200:5555/'),
+(5, 'MUD Updater','http://localhost:5555/updater');
 /*!40000 ALTER TABLE `uitool` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +164,7 @@ UNLOCK TABLES;
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`,`active`,`email`,`name`,`password`,`role`) VALUES
-	 (1, 1,'admin@admin.com','Administrator','{bcrypt}$2a$10$5qTrSo4QrL2Mo0Tyld7NDOuK34gEZFnwsFsaJXjH5Lcs/GP/ewhGK','ADMIN');
+(1, 1,'admin@admin.com','Administrator','{bcrypt}$2a$10$5qTrSo4QrL2Mo0Tyld7NDOuK34gEZFnwsFsaJXjH5Lcs/GP/ewhGK','ADMIN');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,15 +189,6 @@ INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`visib
 /*!40000 ALTER TABLE `input` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
--- LOCK TABLES `job` WRITE;
-/*!40000 ALTER TABLE `job` DISABLE KEYS */;
--- INSERT INTO `job` VALUES 
--- (3,'2022-01-11 10:11:15','2022-01-28 13:04:48',NULL,'Test Job 1','2022-01-11 10:11:15',1,'{}','{\"name\":\"DesignTime Methodology\",\"description\":\"The DesignTime Methodology will generate Test Results based on User Preference\",\"isRuntime\":false,\"startedTime\":1643367888774,\"finishedTime\":0,\"finished\":false,\"lastUpdate\":\"\",\"currentStep\":1,\"firstStep\":1,\"lastStep\":9,\"steps\":[{\"id\":1,\"previous\":1,\"next\":2,\"isComplete\":false,\"name\":\"Risk Identification\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":false,\"name\":\"Test Design\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Test Implementation\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Environment Setup\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":5,\"previous\":4,\"next\":6,\"isComplete\":false,\"name\":\"Test Execution\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":6,\"previous\":5,\"next\":7,\"isComplete\":false,\"name\":\"Risk Estimation\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":7,\"previous\":6,\"next\":8,\"isComplete\":false,\"name\":\"Risk Evaluation\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":8,\"previous\":7,\"next\":9,\"isComplete\":false,\"name\":\"Labeling\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":9,\"previous\":8,\"next\":1,\"isComplete\":false,\"name\":\"Treatment\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}],\"results\":{},\"events\":[],\"usedTools\":[]}','{\"name\":\"Runtime Methodology\",\"description\":\"Test methodology\",\"isRuntime\":true,\"startedTime\":0,\"finishedTime\":0,\"finished\":false,\"lastUpdate\":\"\",\"currentStep\":2,\"firstStep\":1,\"lastStep\":4,\"steps\":[{\"id\":1,\"previous\":1,\"next\":2,\"isComplete\":true,\"name\":\"Step 1\",\"toolsStatuses\":{},\"usedTools\":[4,12],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Second Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Third Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Fourth Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}],\"results\":{},\"events\":[],\"usedTools\":[]}','{}'),
--- (4,'2022-01-25 10:56:32','2022-01-28 14:04:04','2022-01-28 14:04:19','Job with Mock Tool','2022-01-27 14:35:38',1,'{\"6.values\":\"66, 66, 33, 0, 100, 33\"}','{\"name\":\"DesignTime Methodology\",\"description\":\"This is a mock design time methodology, to prove the working of the BIECO Platform\",\"isRuntime\":false,\"startedTime\":1643371444138,\"finishedTime\":1643371459318,\"finished\":true,\"lastUpdate\":\"\",\"currentStep\":1,\"firstStep\":1,\"lastStep\":1,\"steps\":[{\"id\":1,\"previous\":1,\"next\":1,\"isComplete\":true,\"name\":\"Run Mock Tool\",\"toolsStatuses\":{\"6\":\"Finished\"},\"usedTools\":[6],\"transfer\":[],\"inputs\":[],\"outputs\":[{\"toolId\":6,\"messages\":[{\"jobID\":\"4\",\"timestamp\":\"2022-01-28 14:04:13.218\",\"messageType\":\"Error\",\"sourceIP\":\"0.0.0.0\",\"sourceID\":\"6\",\"destinationID\":\"\",\"event\":\"Error\",\"accessLevel\":\"public\",\"priority\":5,\"crc\":25042718311,\"bodyFormat\":\"text\",\"bodyCompression\":\"none\",\"body\":\"Failure on line 55 of file main.cpp\"},{\"jobID\":\"4\",\"timestamp\":\"2022-01-28 14:04:15.246\",\"messageType\":\"Error\",\"sourceIP\":\"0.0.0.0\",\"sourceID\":\"6\",\"destinationID\":\"\",\"event\":\"Error\",\"accessLevel\":\"public\",\"priority\":5,\"crc\":27814316112,\"bodyFormat\":\"text\",\"bodyCompression\":\"none\",\"body\":\"Possible Zero-Day Exploit in module org.example.serialinput.ReadInput\"},{\"jobID\":\"4\",\"timestamp\":\"2022-01-28 14:04:17.272\",\"messageType\":\"Finishing\",\"sourceIP\":\"0.0.0.0\",\"sourceID\":\"6\",\"destinationID\":\"\",\"event\":\"Finishing\",\"accessLevel\":\"public\",\"priority\":5,\"crc\":24081978791,\"bodyFormat\":\"JSON\",\"bodyCompression\":\"none\",\"body\":\"{\\\"radarValues\\\":\\\"66, 66, 33, 0, 100, 33\\\"}\"}]}],\"nextStepTransitions\":[]}],\"results\":{\"Holisun Mock Tool - Error - 1\":\"Possible Zero-Day Exploit in module org.example.serialinput.ReadInput\",\"Holisun Mock Tool - Error - 0\":\"Failure on line 55 of file main.cpp\",\"Holisun Mock Tool - Finished - 2\":\"{\\\"radarValues\\\":\\\"66, 66, 33, 0, 100, 33\\\"}\",\"Holisun Mock Tool - Finished - 1\":\"Possible Zero-Day Exploit in module org.example.serialinput.ReadInput\",\"Holisun Mock Tool - Finished - 0\":\"Failure on line 55 of file main.cpp\"},\"events\":[],\"usedTools\":[6]}','{\"name\":\"Runtime Methodology\",\"description\":\"\",\"isRuntime\":true,\"startedTime\":0,\"finishedTime\":0,\"finished\":false,\"lastUpdate\":\"\",\"currentStep\":2,\"firstStep\":1,\"lastStep\":4,\"steps\":[{\"id\":1,\"previous\":1,\"next\":2,\"isComplete\":true,\"name\":\"First Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Second Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Third Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Fourth Step\",\"toolsStatuses\":{},\"usedTools\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}],\"results\":{},\"events\":[],\"usedTools\":[]}','null');
-/*!40000 ALTER TABLE `job` ENABLE KEYS */;
--- UNLOCK TABLES;
-
 LOCK TABLES `setting` WRITE;
 /*!40000 ALTER TABLE `setting` DISABLE KEYS */;
 INSERT INTO `setting` VALUES 
@@ -214,11 +201,7 @@ INSERT INTO `setting` VALUES
 /*!40000 ALTER TABLE `setting` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-
-
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -226,5 +209,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2022-11-23 10:57:33
