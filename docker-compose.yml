@@ -105,7 +105,7 @@ services:
             - "8161:8161"
             - "61613:61613"  # enable only if needed
             - "61614:61614"  # enable only if needed
-            - "61616:61616"
+            - "61617:61616"
         volumes:
             - bieco-data:/activemq
         networks:
@@ -191,7 +191,8 @@ services:
     runtime-monitoring:
         image: acalabro/concern:latest
         ports:
-            # - "4700:8181"  # does it need to be open?
+            - "4700:8181"  # open for debugging purposes
+            - "61616:61616"
         networks:
             - bieco-net
         volumes:
