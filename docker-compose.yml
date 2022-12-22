@@ -186,6 +186,16 @@ services:
             - "5555:5555"
         networks:
             - bieco-net
+    
+    # ---- Runtime Monitoring (CNR) ----
+    runtime-monitoring:
+        image: acalabro/concern:latest
+        ports:
+            # - "4700:8181"  # does it need to be open?
+        networks:
+            - bieco-net
+        volumes:
+            - bieco-data:/platform
 
 
 volumes:
