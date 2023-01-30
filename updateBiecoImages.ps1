@@ -1,0 +1,9 @@
+docker pull mysql:5.7.33
+docker pull emiliacioroaica/ps_prototype:latest
+docker pull rmohr/activemq:latest
+docker pull rpiliszek7b/bieco_security_scorer_api:latest
+docker pull rpiliszek7b/bieco_security_scorer_integrator:latest
+docker pull dridix/umu-bieco:umu-image
+docker pull acalabro/concern:latest
+docker pull saiddao/ontologymanager:latest
+docker pull rpiliszek7b/bieco_security_scorer_api:latest
