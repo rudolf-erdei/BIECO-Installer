@@ -76,146 +76,146 @@ services:
         networks:
             - bieco-net
 
-    # mock-tool:  # only used for testing 
-    #     image: holisun/mock-tool:0.2.0
-    #     environment:
-    #         SPRING_APPLICATION_JSON: '{
-    #             "bieco.orchestrator.url" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
-    #             "bieco.orchestrator.token" : "rK6ILPiurtfFV",
-    #             "mock.token": "JAD7A6WAD454AS33AF4"}'
-    #     ports:
-    #         - 4500:8080
-    #     restart: unless-stopped
-    #     networks:
-    #         - bieco-net
+    mock-tool:  # only used for testing 
+        image: holisun/mock-tool:0.2.0
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                "bieco.orchestrator.url" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
+                "bieco.orchestrator.token" : "rK6ILPiurtfFV",
+                "mock.token": "JAD7A6WAD454AS33AF4"}'
+        ports:
+            - 4500:8080
+        restart: unless-stopped
+        networks:
+            - bieco-net
     
     # ---- Predictive Simulation (IESE) ----
-    # predictive-simulation:
-    #     image: emiliacioroaica/ps_prototype:latest
-    #     depends_on:
-    #         - "activemq"
-    #     restart: unless-stopped
-    #     networks:
-    #         - bieco-net
-    #     environment:
-    #         SPRING_APPLICATION_JSON: '{
-    #             "orchestratorToken" : "6sdQpBgkrL6yu",
-    #             "orchestratorUrl" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
-    #             "token" : "32z27348127482371kk8(())=)=)(=))(76hgh))",
-    #             "AMQ_URL" : "tcp://activemq:61616"}'
+    predictive-simulation:
+        image: emiliacioroaica/ps_prototype:latest
+        depends_on:
+            - "activemq"
+        restart: unless-stopped
+        networks:
+            - bieco-net
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                "orchestratorToken" : "6sdQpBgkrL6yu",
+                "orchestratorUrl" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
+                "token" : "32z27348127482371kk8(())=)=)(=))(76hgh))",
+                "AMQ_URL" : "tcp://activemq:61616"}'
 
-    # activemq:
-    #     image: rmohr/activemq:latest
-    #     ports:
-    #         # - "1883:1883"  # enable only if needed
-    #         # - "5672:5672"  # enable only if needed
-    #         - "8161:8161"
-    #         # - "61613:61613"  # enable only if needed
-    #         # - "61614:61614"  # enable only if needed
-    #         - "61617:61616"
-    #     volumes:
-    #         - bieco-data:/activemq
-    #     networks:
-    #         - bieco-net
+    activemq:
+        image: rmohr/activemq:latest
+        ports:
+            # - "1883:1883"  # enable only if needed
+            # - "5672:5672"  # enable only if needed
+            - "8161:8161"
+            # - "61613:61613"  # enable only if needed
+            # - "61614:61614"  # enable only if needed
+            - "61617:61616"
+        volumes:
+            - bieco-data:/activemq
+        networks:
+            - bieco-net
 
     # ---- Security Scorer (7B) ----
-    # api:
-    #     image: rpiliszek7b/bieco_security_scorer_api:latest
-    #     read_only: true
-    #     networks:
-    #         - bieco-net
+    api:
+        image: rpiliszek7b/bieco_security_scorer_api:latest
+        read_only: true
+        networks:
+            - bieco-net
         
-    # security-scorer:
-    #     image: rpiliszek7b/bieco_security_scorer_integrator:latest
-    #     read_only: true
-    #     environment:
-    #         ORCHESTRATOR_TOKEN: rK6ILPiurtfFV
-    #         ORCHESTRATOR_URL: http://bieco-orchestrator:4000/orchestrator/biecointerface
-    #         INTEGRATOR_TOKEN: JAD7A6WAD454AS33AF4
-    #         TOOL_URL: http://api:8000/estimate_risk
-    #     tmpfs:
-    #         - /tmp
-    #     networks:
-    #         - bieco-net
+    security-scorer:
+        image: rpiliszek7b/bieco_security_scorer_integrator:latest
+        read_only: true
+        environment:
+            ORCHESTRATOR_TOKEN: rK6ILPiurtfFV
+            ORCHESTRATOR_URL: http://bieco-orchestrator:4000/orchestrator/biecointerface
+            INTEGRATOR_TOKEN: JAD7A6WAD454AS33AF4
+            TOOL_URL: http://api:8000/estimate_risk
+        tmpfs:
+            - /tmp
+        networks:
+            - bieco-net
 
 
     # ---- FUZZING TOOL (GRADIANT) ----
-    # fuzzing-db:
-    #     image: mysql:5.7
-    #     restart: unless-stopped
-    #     environment:
-    #         MYSQL_DATABASE: 'fuzzing'
-    #         MYSQL_USER: 'user'
-    #         MYSQL_PASSWORD: ${DB_PASSWORD}
-    #         MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    #     ports:
-    #         - '3320:3306'
-    #     networks:
-    #         - bieco-net
-    #     volumes:
-    #         - /tmp/mysql:/var/lib/mysql
+    fuzzing-db:
+        image: mysql:5.7
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: 'fuzzing'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        ports:
+            - '3320:3306'
+        networks:
+            - bieco-net
+        volumes:
+            - /tmp/mysql:/var/lib/mysql
     
-    # fuzzing-tool:
-    #     image: harbor.gradiant.org/syp-bieco-pr-01333/fuzzing-tool:latest
-    #     read_only: true
-    #     restart: unless-stopped
-    #     environment:
-    #         TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
-    #         ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
-    #         ORCHESTRATOR_URL: http://bieco-orchestrator:4000
-    #         ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
-    #         FUZZDB_DRIVER: mysql+asyncmy
-    #         FUZZDB_HOST: fuzzing-db
-    #         FUZZDB_PORT: 3306
-    #         FUZZDB_USER: root
-    #         FUZZDB_PASSWORD: ${DB_PASSWORD}
-    #         API-AUTHORIZATION-BEARER-TOKEN: Bearer token-here
-    #     depends_on:
-    #         - fuzzing-db
-    #         - bieco-orchestrator
-    #     networks:
-    #         - bieco-net
+    fuzzing-tool:
+        image: harbor.gradiant.org/syp-bieco-pr-01333/fuzzing-tool:latest
+        read_only: true
+        restart: unless-stopped
+        environment:
+            TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
+            ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
+            ORCHESTRATOR_URL: http://bieco-orchestrator:4000
+            ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
+            FUZZDB_DRIVER: mysql+asyncmy
+            FUZZDB_HOST: fuzzing-db
+            FUZZDB_PORT: 3306
+            FUZZDB_USER: root
+            FUZZDB_PASSWORD: ${DB_PASSWORD}
+            API-AUTHORIZATION-BEARER-TOKEN: Bearer token-here
+        depends_on:
+            - fuzzing-db
+            - bieco-orchestrator
+        networks:
+            - bieco-net
 
     # ---- MUD Updater (UMU) ----
-    # mud-updater:
-    #     image: dridix/umu-bieco:umu-image
-    #     ports:
-    #         - "5555:5555"
-    #     networks:
-    #         - bieco-net
+    mud-updater:
+        image: dridix/umu-bieco:umu-image
+        ports:
+            - "5555:5555"
+        networks:
+            - bieco-net
     
     # ---- Runtime Monitoring (CNR) ----
-    # runtime-monitoring:
-    #     image: acalabro/concern:latest
-    #     ports:
-    #         - "4700:8181"  # open for debugging purposes
-    #         - "61616:61616"
-    #     networks:
-    #         - bieco-net
-    #     volumes:
-    #         - bieco-data:/platform
+    runtime-monitoring:
+        image: acalabro/concern:latest
+        ports:
+            - "4700:8181"  # open for debugging purposes
+            - "61616:61616"
+        networks:
+            - bieco-net
+        volumes:
+            - bieco-data:/platform
     
     # ---- Ontology Manager (CNR) ----
-    # ontology-manager:
-    #     image: saiddao/ontologymanager:latest
-    #     ports:
-    #         - "62626:62626"
-    #         - "8282:8282"  
-    #     networks:
-    #         - bieco-net
-    #     volumes:
-    #         - bieco-data:/platform
+    ontology-manager:
+        image: saiddao/ontologymanager:latest
+        ports:
+            - "62626:62626"
+            - "8282:8282"  
+        networks:
+            - bieco-net
+        volumes:
+            - bieco-data:/platform
 
     
     # ---- Failure Prediction (UTC) ----
-    # failure-prediction:
-    #     image: ovidiucosmabm/fpt:latest
-    #     ports:
-    #         - "1500:8080"
-    #     networks:
-    #         - bieco-net
-    #     volumes:
-    #         - bieco-data:/platform
+    failure-prediction:
+        image: ovidiucosmabm/fpt:latest
+        ports:
+            - "1500:8080"
+        networks:
+            - bieco-net
+        volumes:
+            - bieco-data:/platform
 
 
 volumes:
