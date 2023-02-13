@@ -181,8 +181,10 @@ INSERT INTO `tool` VALUES
 (10, b'0', b'1','http://runtime-monitoring:8181/monitoring/biecointerface','YeAm0hdkf5W9s','746gfbrenkljhGU', 'Runtime Monitoring', 'CNR', 'The Runtime Monitoring splits functionalities into independent modules that can be enacted according to the desired configuration/operational profile. The Complex Event Processor, the core part of the Runtime Monitoring, can be deployed in multiple instances on several nodes.',1,0,0,3,b'0'),
 (11, b'0', b'1','http://ontology-manager:8282/ontologymanager/biecointerface','MDM2grHjCbdRy','qJACs1J0apruOOJCg', 'Ontology Manager', 'CNR', 'Ontology Manager for managing concepts System of Systems (SoS) ad Monitoring concepts and relationships between them.',1,0,0,3,b'0'),
 (12, b'0', b'1','http://failure-prediction:8080/running-models/','MDM2grHjCbdRy','6i7tygfi-95r6%2r&54e7$E&51rfioT(*&tg', 'Failure Prediction', 'UTC', 'Failure Prediction based on Machine Learning',1,0,0,3,b'0'),
-(13, b'0', b'1','http://forecasting-tool:8080/biecointerface','DUKocxXt3O6C5','YUdHm0PnPJCyP', 'Forecasting Tool', 'GRADIANT', '[TODO]',1,0,0,3,b'0'),
-(14, b'0', b'1','http://detection-tool:8080/biecointerface','XkYAaJwBvBcJA','YUdHm0PnPJCyP', 'Detection Tool', 'GRADIANT', '[TODO]',1,0,0,3,b'0');
+(13, b'0', b'1','http://detection-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Detection Tool', 'GRADIANT', 'Detect vulnerabilities in source code',1,0,0,3,b'0'),
+(14, b'0', b'1','http://forecasting-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Forecasting Tool', 'GRADIANT', 'Predict the exploitability of a public vulnerability. ',1,0,0,3,b'0'),
+(15, b'0', b'1','http://propagation-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Propagation Tool', 'GRADIANT', 'The main goal of the propagation tool is to find and indicate the components or elements a single vulnerability can affect, and therefore, its path within the system.',1,0,0,3,b'0');
+
 
 /*!40000 ALTER TABLE `tool` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -191,7 +193,16 @@ LOCK TABLES `input` WRITE;
 /*!40000 ALTER TABLE `input` DISABLE KEYS */;
 INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`visible_on_ui`,`tool_id`) VALUES
 (1,'6.values','values','Values to be displayed','','string',1,6),
-(2,'9.swagger','swagger','Swagger File','','file',1,9);
+(2,'9.swagger','swagger','Swagger File','','file',1,9),
+(1,'9.authtoken','authtoken','Auth token for the endpoint to test','','file',1,9),
+(1,'13.sourcecode','sourcecode','Source code in ZIP format','','file',1,13),
+(1,'13.programminglanguage','programminglanguage','Programing language','','string',1,13),
+(1,'14.cve','cve','cve','','string',1,14),
+(1,'15.sourcecode','sourcecode','Source Code Zip','','file',1,15),
+(1,'15.language','language','Programming Language','','string',1,15),
+(1,'15.mainfile','mainfile','Relative path to main file','','string',1,15),
+(1,'15.vulnerabilityfile','vulnerabilityfile','Relative path to vulnerable file','','string',1,15),
+(1,'15.vulnerabilityline','vulnerabilityline','Line of the vulneraility','','string',1,15);
 /*!40000 ALTER TABLE `input` ENABLE KEYS */;
 UNLOCK TABLES;
 

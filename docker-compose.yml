@@ -149,27 +149,28 @@ services:
             MYSQL_PASSWORD: ${DB_PASSWORD}
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
         ports:
-            - '3320:3306'
+            - '13306:3306'
         networks:
             - bieco-net
         volumes:
-            - /tmp/mysql:/var/lib/mysql
+            - bieco-data-fuzzing:/var/lib/mysql
     
     fuzzing-tool:
         image: harbor.gradiant.org/syp-bieco-pr-01333/fuzzing-tool:latest
-        read_only: true
         restart: unless-stopped
         environment:
             TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
             ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
             ORCHESTRATOR_URL: http://bieco-orchestrator:4000
             ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
-            FUZZDB_DRIVER: mysql+asyncmy
-            FUZZDB_HOST: fuzzing-db
+            FUZZDB_DRIVER: 'mysql+asyncmy'
+            FUZZDB_HOST: 'fuzzing-db'
             FUZZDB_PORT: 3306
-            FUZZDB_USER: root
+            FUZZDB_USER: 'root'
             FUZZDB_PASSWORD: ${DB_PASSWORD}
-            API-AUTHORIZATION-BEARER-TOKEN: Bearer token-here
+            # API-AUTHORIZATION-BEARER-TOKEN: Bearer token-here
+        volumes:
+           - bieco-data:/platform
         depends_on:
             - fuzzing-db
             - bieco-orchestrator
@@ -178,13 +179,15 @@ services:
 
     forecasting-tool:
         image: harbor.gradiant.org/syp-bieco-pr-01333/forecasting-tool
-        read_only: true
         restart: unless-stopped
         environment:
-            TOOL_TOKEN: YUdHm0PnPJCyP
-            ORCHESTRATOR_TOKEN: DUKocxXt3O6C5
+            TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
+            ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
             ORCHESTRATOR_URL: http://bieco-orchestrator:4000
             ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
+            TOKEN_TWITTER: AAAAAAAAAAAAAAAAAAAAAMSKgQEAAAAAR5eW3Lh2GlesFpl0rqiIPBcC5gA%3DU0u5XDi9IwzH9xcGG7d7Rcy9BUXhFgxIBDk7ACjE80y11QpGXr
+        volumes:
+            - bieco-data:/platform
         depends_on:
             - bieco-orchestrator
         networks:
@@ -194,10 +197,27 @@ services:
         image: harbor.gradiant.org/syp-bieco-pr-01333/detection-tool
         restart: unless-stopped
         environment:
-            TOOL_TOKEN: YUdHm0PnPJCyP
-            ORCHESTRATOR_TOKEN: XkYAaJwBvBcJA
+            TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
+            ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
             ORCHESTRATOR_URL: http://bieco-orchestrator:4000
             ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
+        volumes:
+            - bieco-data:/platform
+        depends_on:
+            - bieco-orchestrator
+        networks:
+            - bieco-net
+    
+    propagation-tool:
+        image: harbor.gradiant.org/syp-bieco-pr-01333/propagation-tool
+        restart: unless-stopped
+        environment:
+            TOOL_TOKEN: 8Xoz0OlwRB+sumesL6n67nuwG7cg
+            ORCHESTRATOR_TOKEN: YUdHm0PnPJCyP
+            ORCHESTRATOR_URL: http://bieco-orchestrator:4000
+            ORCHESTRATOR_ENDPOINT: /orchestrator/biecointerface
+        volumes:
+            - bieco-data:/platform
         depends_on:
             - bieco-orchestrator
         networks:
@@ -248,6 +268,7 @@ services:
 
 volumes:
     bieco-data:
+    bieco-data-fuzzing:
 networks:
   bieco-net:
     name: bieco-net
