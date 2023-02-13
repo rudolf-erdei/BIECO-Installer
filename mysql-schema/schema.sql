@@ -194,7 +194,7 @@ LOCK TABLES `input` WRITE;
 INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`visible_on_ui`,`tool_id`) VALUES
 (1,'6.values','values','Values to be displayed','','string',1,6),
 (2,'9.swagger','swagger','Swagger File','','file',1,9),
-(1,'9.authtoken','authtoken','Auth token for the endpoint to test','','file',1,9),
+(1,'9.authtoken','authtoken','Auth token for the endpoint to test','','string',1,9),
 (1,'13.sourcecode','sourcecode','Source code in ZIP format','','file',1,13),
 (1,'13.programminglanguage','programminglanguage','Programing language','','string',1,13),
 (1,'14.cve','cve','cve','','string',1,14),
