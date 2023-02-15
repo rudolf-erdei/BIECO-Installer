@@ -11,6 +11,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+USE `biecoplatform`;
+
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -157,7 +159,8 @@ INSERT INTO `uitool` (`id`, `title`,`url`, `methodology`) VALUES
 (2, 'Vulnerabilities Forecasting Tool','http://vf.bieco.org', 'designtime'),
 (3, 'GraphWalker Studio','http://155.54.210.200:9090/studio.html', 'designtime'),
 (4, 'Test Suite Generator','http://155.54.210.200:5555/', 'designtime'),
-(5, 'MUD Updater','http://localhost:5555/updater', 'designtime');
+(5, 'MUD Updater','http://localhost:5555/updater', 'designtime'),
+(6, 'Monitoring', 'http://localhost:4700/monitoring/biecointerface', 'runtime');
 /*!40000 ALTER TABLE `uitool` ENABLE KEYS */;
 UNLOCK TABLES;
 
