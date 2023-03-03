@@ -249,7 +249,6 @@ services:
     ontology-manager:
         image: saiddao/ontologymanager:latest
         ports:
-            - "62626:62626"
             - "8282:8282"  
         networks:
             - bieco-net
