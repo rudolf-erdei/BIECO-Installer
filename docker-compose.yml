@@ -81,6 +81,8 @@ services:
         ports:
             - 4500:8080
         restart: unless-stopped
+        depends_on:
+            - "bieco-orchestrator"
         networks:
             - bieco-net
     
