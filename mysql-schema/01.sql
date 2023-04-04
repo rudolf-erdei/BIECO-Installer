@@ -59,6 +59,7 @@ CREATE TABLE `job` (
   `user_id` bigint(20) NOT NULL,
   `json_parameters` LONGTEXT,
   `design_time` LONGTEXT,
+  `staging` LONGTEXT,
   `run_time` LONGTEXT,
   `settings` LONGTEXT,
   PRIMARY KEY (`id`),
@@ -157,9 +158,9 @@ LOCK TABLES `uitool` WRITE;
 INSERT INTO `uitool` (`id`, `title`,`url`, `methodology`) VALUES
 (1, 'Data Collection Tool','https://dct.bieco.org', 'designtime'),
 (2, 'Vulnerabilities Forecasting Tool','http://vf.bieco.org', 'designtime'),
-(3, 'GraphWalker Studio','http://155.54.210.200:9090/studio.html', 'designtime'),
+(3, 'GraphWalker Studio','http://155.54.210.200:9090/studio.html', 'staging'),
 (4, 'Test Suite Generator','http://155.54.210.200:5555/', 'designtime'),
-(5, 'MUD Updater','http://localhost:5555/updater', 'designtime'),
+(5, 'MUD Updater','http://localhost:5555/updater', 'staging'),
 (6, 'Runtime Monitoring', 'http://localhost:4700/monitoring/biecointerface', 'runtime'),
 (7, 'Ontology Manager Admin', 'http://localhost:8282/', 'runtime');
 /*!40000 ALTER TABLE `uitool` ENABLE KEYS */;
@@ -197,8 +198,8 @@ LOCK TABLES `input` WRITE;
 /*!40000 ALTER TABLE `input` DISABLE KEYS */;
 INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`visible_on_ui`,`tool_id`) VALUES
 (1,'6.values','values','Values to be displayed','','string',1,6),
-(2,'9.swagger','swagger','Swagger File','','file',1,9),
-(1,'9.authtoken','authtoken','Auth token for the endpoint to test','','string',1,9),
+(1,'9.swagger','swagger','Swagger File','','file',1,9),
+(0,'9.authtoken','authtoken','Auth token for the endpoint to test','','string',1,9),
 (1,'13.sourcecode','sourcecode','Source code in ZIP format','','file',1,13),
 (1,'13.programminglanguage','programminglanguage','Programing language','','string',1,13),
 (1,'14.cve','cve','cve','','string',1,14),
@@ -216,12 +217,13 @@ INSERT INTO `setting` VALUES
 (1,'messageToReaction','{\"store\":[\"org.bieco.orchestrator.reactions.StoreInDCTReaction\"],\"retrieve\":[\"org.bieco.orchestrator.reactions.RetrieveFromDCTReaction\"],\"apiaccess\":[\"org.bieco.orchestrator.reactions.ApiAccessReaction\"],\"display\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"iframe\":[\"org.bieco.orchestrator.reactions.StartIframeReaction\"],\"iframeend\":[\"org.bieco.orchestrator.reactions.EndIframeReaction\"],\"info\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"notice\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"warning\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"ui\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"uirequest\":[\"org.bieco.orchestrator.reactions.UiRequestReaction\"]}'),
 (2,'defaultDesignMethodologyBak','{\"name\":\"Default DesignTime Methodology\",\"description\":\"\",\"isRuntime\":false,\"lastUpdate\":null,\"currentStep\":3,\"firstStep\":1,\"lastStep\":9,\"steps\":[{\"id\":1,\"previous\":null,\"next\":2,\"isComplete\":true,\"name\":\"Risk Identification\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Test Design\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Test Implementation\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Environment Setup\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":5,\"previous\":4,\"next\":6,\"isComplete\":false,\"name\":\"Test Execution\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":6,\"previous\":5,\"next\":7,\"isComplete\":false,\"name\":\"Risk Estimation\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":7,\"previous\":6,\"next\":8,\"isComplete\":false,\"name\":\"Risk Evaluation\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":8,\"previous\":7,\"next\":9,\"isComplete\":false,\"name\":\"Labeling\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":9,\"previous\":8,\"next\":null,\"isComplete\":false,\"name\":\"Treatment\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}]}'),
 (3,'defaultRunMethodology','{\"name\":\"Default Runtime Methodology\",\"description\":\"\",\"isRuntime\":true,\"lastUpdate\":null,\"currentStep\":2,\"firstStep\":1,\"lastStep\":4,\"steps\":[{\"id\":1,\"previous\":null,\"next\":2,\"isComplete\":true,\"name\":\"First Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Second Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Third Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Fourth Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}]}'),
-(4,'uiWsconnURL','/wsconn'),
-(5,'heartbeatIntervalSeconds','10'),
-(6,'defaultDesignMethodology','{\"name\":\"DesignTime Methodology\",\"description\":\"This is a mock design time methodology, to prove the working of the BIECO Platform\", \"isRuntime\": false, \"startTime\": 0, \"finishTime\": 0, \"finished\": false, \"lastUpdate\": \"\", \"currentStep\": 1, \"firstStep\": 1, \"lastStep\": 1, \"steps\":[{\"id\": 1,\"previous\": null,\"next\": null,\"isComplete\":false,\"name\":\"Run Mock Tool\",\"toolsStatuses\":[],\"usedTools\": [6],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}],\"results\":[],\"events\":[],\"usedTools\":[6]}'),
-(7,'ontologyManagerUrl', 'http://ontology-manager:8282/ontologymanager/biecointerface'),
-(8,'ontologyManagerAuthKey', 'qJACs1J0apruOOJCg'),
-(9,'runtimeMonitoringGuiIframe','');
+(4,'defaultStagingMethodology','{\"name\":\"Default Staging Methodology\",\"description\":\"\",\"isRuntime\":false,\"lastUpdate\":null,\"currentStep\":2,\"firstStep\":1,\"lastStep\":4,\"steps\":[{\"id\":1,\"previous\":null,\"next\":2,\"isComplete\":true,\"name\":\"First Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Second Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Third Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Fourth Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}]}'),
+(5,'uiWsconnURL','/wsconn'),
+(6,'heartbeatIntervalSeconds','10'),
+(7,'defaultDesignMethodology','{\"name\":\"DesignTime Methodology\",\"description\":\"This is a mock design time methodology, to prove the working of the BIECO Platform\", \"isRuntime\": false, \"startTime\": 0, \"finishTime\": 0, \"finished\": false, \"lastUpdate\": \"\", \"currentStep\": 1, \"firstStep\": 1, \"lastStep\": 1, \"steps\":[{\"id\": 1,\"previous\": null,\"next\": null,\"isComplete\":false,\"name\":\"Run Mock Tool\",\"toolsStatuses\":[],\"usedTools\": [6],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}],\"results\":[],\"events\":[],\"usedTools\":[6]}'),
+(8,'ontologyManagerUrl', 'http://ontology-manager:8282/ontologymanager/biecointerface'),
+(9,'ontologyManagerAuthKey', 'qJACs1J0apruOOJCg'),
+(10,'runtimeMonitoringGuiIframe','');
 /*!40000 ALTER TABLE `setting` ENABLE KEYS */;
 UNLOCK TABLES;
 

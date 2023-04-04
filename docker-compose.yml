@@ -71,7 +71,7 @@ services:
         networks:
             - bieco-net
 
-    mock-tool:  # only used for testing 
+    mock-tool:  # only used for testing
         image: holisun/mock-tool:0.2.0
         environment:
             SPRING_APPLICATION_JSON: '{
@@ -85,7 +85,7 @@ services:
             - "bieco-orchestrator"
         networks:
             - bieco-net
-    
+
     # ---- Predictive Simulation (IESE) ----
     predictive-simulation:
         image: emiliacioroaica/ps_prototype:latest
@@ -106,10 +106,10 @@ services:
         ports:
             # - "1883:1883"  # enable only if needed
             # - "5672:5672"  # enable only if needed
-            - "8161:8161"
+            - "${ACTIVEMQ_ADMIN_PORT}:8161"
             # - "61613:61613"  # enable only if needed
             # - "61614:61614"  # enable only if needed
-            - "61617:61616"
+            - "${ACTIVEMQ_PUBLIC_PORT}:61616"
         volumes:
             - bieco-data:/activemq
         networks:
@@ -121,7 +121,7 @@ services:
         read_only: true
         networks:
             - bieco-net
-        
+
     security-scorer:
         image: rpiliszek7b/bieco_security_scorer_integrator:latest
         read_only: true
@@ -150,7 +150,7 @@ services:
             - bieco-net
         volumes:
             - bieco-data-fuzzing:/var/lib/mysql
-    
+
     fuzzing-tool:
         image: harbor.gradiant.org/syp-bieco-pr-01333/fuzzing-tool:latest
         restart: unless-stopped
@@ -203,7 +203,7 @@ services:
             - bieco-orchestrator
         networks:
             - bieco-net
-    
+
     propagation-tool:
         image: harbor.gradiant.org/syp-bieco-pr-01333/propagation-tool
         restart: unless-stopped
@@ -223,12 +223,12 @@ services:
     mud-updater:
         image: dridix/umu-bieco:umu-image
         ports:
-            - "5555:5555"
+            - "${MUD_UPDATER_PUBLIC_PORT}:5555"
         networks:
             - bieco-net
         volumes:
             - bieco-data:/platform
-    
+
     # ---- Runtime Monitoring (CNR) ----
     runtime-monitoring:
         image: acalabro/concern:bieco
@@ -240,33 +240,32 @@ services:
         depends_on:
             - "activemq"
         ports:
-            - "4700:8181"
+            - "${RUNTIME_MONITORING_PUBLIC_PORT}:8181"
         networks:
             - bieco-net
         volumes:
             - /local/source/
             - bieco-data:/platform
-    
+
     # ---- Ontology Manager (CNR) ----
     ontology-manager:
         image: saiddao/ontologymanager:latest
         ports:
-            - "8282:8282"  
-        networks:
-            - bieco-net
-        volumes:
-            - bieco-data:/platform
-    
-    # ---- Failure Prediction (UTC) ----
-    failure-prediction:
-        image: ovidiucosmabm/fpt:latest
-        ports:
-            - "1500:8080"
+            - "${ONTOLOGY_MANAGER_PUBLIC_PORT}:8282"
         networks:
             - bieco-net
         volumes:
             - bieco-data:/platform
 
+    # ---- Failure Prediction (UTC) ----
+    failure-prediction:
+        image: ovidiucosmabm/fpt:version3
+        ports:
+            - "${FAILURE_PREDICTION_PUBLIC_PORT}:8080"
+        networks:
+            - bieco-net
+        volumes:
+            - bieco-data:/platform
 
 volumes:
     bieco-data:
