@@ -40,6 +40,7 @@ CREATE TABLE `input` (
   `label` varchar(255) DEFAULT NULL,
   `html` varchar(255) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
+  `options` varchar(255) DEFAULT NULL,
   `visible_on_ui` tinyint(4) NOT NULL DEFAULT '1',
   `tool_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -176,7 +177,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `tool` WRITE;
 /*!40000 ALTER TABLE `tool` DISABLE KEYS */;
-INSERT INTO `tool` VALUES 
+INSERT INTO `tool` VALUES
 ( 4, b'0', b'1','https://api.dct.bieco.org/ils/','ajw4gti43yugtlai3k43yg','99998a72-ede0-11eb-9f9b-110eb294d8b7','Data Collection Tool','Technical University of Cluj-Napoca, Romania','The Data Collection Tool is a web application that represents the implementation support for the DSV. It has a RESTful API for communicating with the other BIECO tools, and a web user interface. The following sections contain a detailed description of the DCT architecture, the DSV information structure, the API specification and the user interface. ',1,1,1,2, b'0'),
 ( 5, b'0', b'1','http://bieco-ui:8080/ui/biecointerface','iVBQ#L;*4a5o78','LSE7oweb87vowe87','Bieco UI','HOLISUN SRL','The UI for the BIECO Platform',1,0,1,1, b'0'),
 ( 6, b'0', b'1','http://mock-tool:8080/mock/biecointerface','rK6ILPiurtfFV','JAD7A6WAD454AS33AF4','Holisun Mock Tool','Holisun','Mock',1,0,0,3,b'0'),
@@ -213,7 +214,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `setting` WRITE;
 /*!40000 ALTER TABLE `setting` DISABLE KEYS */;
-INSERT INTO `setting` VALUES 
+INSERT INTO `setting` VALUES
 (1,'messageToReaction','{\"store\":[\"org.bieco.orchestrator.reactions.StoreInDCTReaction\"],\"retrieve\":[\"org.bieco.orchestrator.reactions.RetrieveFromDCTReaction\"],\"apiaccess\":[\"org.bieco.orchestrator.reactions.ApiAccessReaction\"],\"display\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"iframe\":[\"org.bieco.orchestrator.reactions.StartIframeReaction\"],\"iframeend\":[\"org.bieco.orchestrator.reactions.EndIframeReaction\"],\"info\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"notice\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"warning\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"ui\":[\"org.bieco.orchestrator.reactions.SendToUiReaction\"],\"uirequest\":[\"org.bieco.orchestrator.reactions.UiRequestReaction\"]}'),
 (2,'defaultDesignMethodologyBak','{\"name\":\"Default DesignTime Methodology\",\"description\":\"\",\"isRuntime\":false,\"lastUpdate\":null,\"currentStep\":3,\"firstStep\":1,\"lastStep\":9,\"steps\":[{\"id\":1,\"previous\":null,\"next\":2,\"isComplete\":true,\"name\":\"Risk Identification\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Test Design\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Test Implementation\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Environment Setup\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":5,\"previous\":4,\"next\":6,\"isComplete\":false,\"name\":\"Test Execution\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":6,\"previous\":5,\"next\":7,\"isComplete\":false,\"name\":\"Risk Estimation\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":7,\"previous\":6,\"next\":8,\"isComplete\":false,\"name\":\"Risk Evaluation\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":8,\"previous\":7,\"next\":9,\"isComplete\":false,\"name\":\"Labeling\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":9,\"previous\":8,\"next\":null,\"isComplete\":false,\"name\":\"Treatment\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}]}'),
 (3,'defaultRunMethodology','{\"name\":\"Default Runtime Methodology\",\"description\":\"\",\"isRuntime\":true,\"lastUpdate\":null,\"currentStep\":2,\"firstStep\":1,\"lastStep\":4,\"steps\":[{\"id\":1,\"previous\":null,\"next\":2,\"isComplete\":true,\"name\":\"First Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":2,\"previous\":1,\"next\":3,\"isComplete\":true,\"name\":\"Second Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":3,\"previous\":2,\"next\":4,\"isComplete\":false,\"name\":\"Third Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]},{\"id\":4,\"previous\":3,\"next\":5,\"isComplete\":false,\"name\":\"Fourth Step\",\"toolsStatuses\":[],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}]}'),
