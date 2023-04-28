@@ -197,18 +197,18 @@ UNLOCK TABLES;
 
 LOCK TABLES `input` WRITE;
 /*!40000 ALTER TABLE `input` DISABLE KEYS */;
-INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`visible_on_ui`,`tool_id`) VALUES
-(1,'6.values','values','Values to be displayed','','string',1,6),
-(1,'9.swagger','swagger','Swagger File','','file',1,9),
-(0,'9.authtoken','authtoken','Auth token for the endpoint to test','','string',1,9),
-(1,'13.sourcecode','sourcecode','Source code in ZIP format','','file',1,13),
-(1,'13.programminglanguage','programminglanguage','Programing language','','string',1,13),
-(1,'14.cve','cve','cve','','string',1,14),
-(1,'15.sourcecode','sourcecode','Source Code Zip','','file',1,15),
-(1,'15.language','language','Programming Language','','string',1,15),
-(1,'15.mainfile','mainfile','Relative path to main file','','string',1,15),
-(1,'15.vulnerabilityfile','vulnerabilityfile','Relative path to vulnerable file','','string',1,15),
-(1,'15.vulnerabilityline','vulnerabilityline','Line of the vulneraility','','string',1,15);
+INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`options`,`visible_on_ui`,`tool_id`) VALUES
+(1,'6.values','values','Values to be displayed','','string',NULL,1,6),
+(1,'9.swagger','swagger','Swagger File','','file',NULL,1,9),
+(0,'9.authtoken','authtoken','Auth token for the endpoint to test','','string',NULL,1,9),
+(1,'13.sourcecode','sourcecode','Source code in ZIP format','','file',NULL,1,13),
+(1,'13.programminglanguage','programminglanguage','Programing language','','select','Python,Java,C',1,13),
+(1,'14.cve','cve','cve','','string',NULL,1,14),
+(1,'15.sourcecode','sourcecode','Source Code Zip','','file',NULL,1,15),
+(1,'15.language','language','Programming Language','','select','Python,Java,C',1,15),
+(0,'15.mainfile','mainfile','Relative path to main file','','string',NULL,1,15),
+(1,'15.vulnerabilityfile','vulnerabilityfile','Relative path to vulnerable file','','string',NULL,1,15),
+(1,'15.vulnerabilityline','vulnerabilityline','Line of the vulneraility','','string',NULL,1,15);
 /*!40000 ALTER TABLE `input` ENABLE KEYS */;
 UNLOCK TABLES;
 
