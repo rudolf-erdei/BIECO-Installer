@@ -121,6 +121,8 @@ services:
         read_only: true
         networks:
             - bieco-net
+        volumes:
+            - bieco-data:/platform
 
     security-scorer:
         image: rpiliszek7b/bieco_security_scorer_integrator:latest
@@ -134,6 +136,8 @@ services:
             - /tmp
         networks:
             - bieco-net
+        volumes:
+            - bieco-data:/platform
 
     # ---- FUZZING TOOL, FORECASTING TOOL, DETECTION TOOL (GRADIANT) ----
     fuzzing-db:
