@@ -92,6 +92,9 @@ services:
         depends_on:
             - "activemq"
         restart: unless-stopped
+        ports:
+            - 4600:4600
+            - 1600:8080
         networks:
             - bieco-net
         environment:
@@ -100,6 +103,8 @@ services:
                 "orchestratorUrl" : "http://bieco-orchestrator:4000/orchestrator/biecointerface",
                 "token" : "32z27348127482371kk8(())=)=)(=))(76hgh))",
                 "AMQ_URL" : "tcp://activemq:61616"}'
+            POST_DOCKER_CONTAINER_REST_URL_ENV_VAR : "http://192.161.111.11:9000/rtes/"
+            LOG_FILE_PATH_ENV_VAR : "/app/LogFile.txt"
 
     activemq:
         image: rmohr/activemq:latest
@@ -263,7 +268,7 @@ services:
 
     # ---- Failure Prediction (UTC) ----
     failure-prediction:
-        image: ovidiucosmabm/fpt:version3
+        image: ovidiucosmabm/fpt:version4
         ports:
             - "${FAILURE_PREDICTION_PUBLIC_PORT}:8080"
         networks:
