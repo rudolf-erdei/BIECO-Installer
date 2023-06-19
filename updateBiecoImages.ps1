@@ -13,4 +13,4 @@ docker pull harbor.gradiant.org/syp-bieco-pr-01333/propagation-tool
 docker pull dridix/umu-bieco:umu-image
 docker pull acalabro/concern:bieco
 docker pull saiddao/ontologymanager:latest
-docker pull ovidiucosmabm/fpt:version4
+docker pull ovidiucosmabm/fpt:version6
