@@ -37,5 +37,9 @@ An instance of MySQL (currently version 5.7.33) comes preinstalled within the sy
 If needed, it can be used, but please create a different database.
 
 ## Integration and ActiveMQ Usage
-
 An instance of ActiveMQ comes preinstalled, as a requirement for some tools. If needed, please use the same instance.
+
+## Troubleshooting
+Sometimes, on Linux-based OS's, the platform won't start as the rights of some files are set wrong when pulling
+or downloading. To solve this issue, please check that all files have the correct read/execution rights. Please
+pay special attention to the **mysql-schema** folder and the files within it.
