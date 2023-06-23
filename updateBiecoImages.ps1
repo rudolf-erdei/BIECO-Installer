@@ -4,8 +4,8 @@ docker pull holisun/bieco-ui:0.2.0
 docker pull holisun/mock-tool:0.2.0
 docker pull emiliacioroaica/ps_prototype:latest
 docker pull rmohr/activemq:latest
-docker pull rpiliszek7b/bieco_security_scorer_api:latest
-docker pull rpiliszek7b/bieco_security_scorer_integrator:latest
+docker pull jmarchel/bieco_security_scorer_api:latest
+docker pull jmarchel/bieco_security_scorer_integrator:latest
 docker pull harbor.gradiant.org/syp-bieco-pr-01333/fuzzing-tool:latest
 docker pull harbor.gradiant.org/syp-bieco-pr-01333/forecasting-tool
 docker pull harbor.gradiant.org/syp-bieco-pr-01333/detection-tool

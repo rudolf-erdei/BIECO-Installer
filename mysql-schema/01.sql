@@ -208,7 +208,11 @@ INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`optio
 (1,'15.language','language','Programming Language','','select','Python,Java,C',1,15),
 (0,'15.mainfile','mainfile','Relative path to main file','','string',NULL,1,15),
 (1,'15.vulnerabilityfile','vulnerabilityfile','Relative path to vulnerable file','','string',NULL,1,15),
-(1,'15.vulnerabilityline','vulnerabilityline','Line of the vulneraility','','string',NULL,1,15);
+(1,'15.vulnerabilityline','vulnerabilityline','Line of the vulneraility','','string',NULL,1,15),
+(1, '7.metadata_path', 'metadata_path', 'Path to metadata file', '', 'string', NULL, 1, 7),
+(0, '7.graphwalker_complete_result_path', 'graphwalker_complete_result_path', 'Path to graphwalker output file','','string', NULL, 1, 7),
+(1, '7.fuzzing_tool', 'fuzzing_tool', 'fuzzing tool used:','','select', 'yes,no', 1, 7),
+(0, '7.graphwalker', 'graphwalker', 'graphwalker used:','','select', 'yes,no', 1, 7);
 /*!40000 ALTER TABLE `input` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -122,7 +122,7 @@ services:
 
     # ---- Security Scorer (7B) ----
     api:
-        image: rpiliszek7b/bieco_security_scorer_api:latest
+        image: jmarchel/bieco_security_scorer_api:latest
         read_only: true
         networks:
             - bieco-net
@@ -130,7 +130,7 @@ services:
             - bieco-data:/platform
 
     security-scorer:
-        image: rpiliszek7b/bieco_security_scorer_integrator:latest
+        image: jmarchel/bieco_security_scorer_integrator:latest
         read_only: true
         environment:
             ORCHESTRATOR_TOKEN: rK6ILPiurtfFV
