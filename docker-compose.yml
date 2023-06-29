@@ -266,6 +266,16 @@ services:
         volumes:
             - bieco-data:/platform
 
+    # ---- GROOT (CNR) ----
+    groot:
+        image: saiddao/groot:latest
+        ports:
+            - "${GROOT_PUBLIC_PORT}:8283"
+        networks:
+            - bieco-net
+        volumes:
+            - bieco-data:/platform
+
     # ---- Failure Prediction (UTC) ----
     failure-prediction:
         image: ovidiucosmabm/fpt:version6

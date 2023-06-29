@@ -163,7 +163,8 @@ INSERT INTO `uitool` (`id`, `title`,`url`, `methodology`) VALUES
 (4, 'Test Suite Generator','http://155.54.210.200:5555/', 'designtime'),
 (5, 'MUD Updater','http://localhost:5555/updater', 'staging'),
 (6, 'Runtime Monitoring', 'http://localhost:4700/monitoring/biecointerface', 'runtime'),
-(7, 'Ontology Manager Admin', 'http://localhost:8282/', 'runtime');
+(7, 'Ontology Manager Admin', 'http://localhost:8282/admin/', 'runtime'),
+(8, 'GROOT', 'http://localhost:8283/admin/', 'staging');
 /*!40000 ALTER TABLE `uitool` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +190,8 @@ INSERT INTO `tool` VALUES
 (12, b'0', b'1','http://failure-prediction:8080/running-models/','MDM2grHjCbdRy','6i7tygfi-95r6%2r&54e7$E&51rfioT(*&tg', 'Failure Prediction', 'UTC', 'Failure Prediction based on Machine Learning',1,0,0,3,b'0'),
 (13, b'0', b'1','http://detection-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Detection Tool', 'GRADIANT', 'Detect vulnerabilities in source code',1,0,0,3,b'0'),
 (14, b'0', b'1','http://forecasting-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Forecasting Tool', 'GRADIANT', 'Predict the exploitability of a public vulnerability. ',1,0,0,3,b'0'),
-(15, b'0', b'1','http://propagation-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Propagation Tool', 'GRADIANT', 'The main goal of the propagation tool is to find and indicate the components or elements a single vulnerability can affect, and therefore, its path within the system.',1,0,0,3,b'0');
+(15, b'0', b'1','http://propagation-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Propagation Tool', 'GRADIANT', 'The main goal of the propagation tool is to find and indicate the components or elements a single vulnerability can affect, and therefore, its path within the system.',1,0,0,3,b'0'),
+(16, b'0', b'1','http://groot:8283/groot/biecointerface','MDM2grHjCbdRyGROOT','qJACs1J0apruOOJCgGROOT', 'GROOT', 'CNR', 'GROOT is based on a combinatorial testing methodology for assessing compliance with the GDPR in the access control domain. <br>For more details, please see the <a href=\"https://www.youtube.com/watch?v=k-K2Fs0hvR4\​" target=\"_blank\">GROOT video</a>.',1,0,0,3,b'0');
 
 
 /*!40000 ALTER TABLE `tool` ENABLE KEYS */;
@@ -228,7 +230,9 @@ INSERT INTO `setting` VALUES
 (7,'defaultDesignMethodology','{\"name\":\"DesignTime Methodology\",\"description\":\"This is a mock design time methodology, to prove the working of the BIECO Platform\", \"isRuntime\": false, \"startTime\": 0, \"finishTime\": 0, \"finished\": false, \"lastUpdate\": \"\", \"currentStep\": 1, \"firstStep\": 1, \"lastStep\": 1, \"steps\":[{\"id\": 1,\"previous\": null,\"next\": null,\"isComplete\":false,\"name\":\"Run Mock Tool\",\"toolsStatuses\":[],\"usedTools\": [6],\"transfer\":[],\"inputs\":[],\"outputs\":[],\"nextStepTransitions\":[]}],\"results\":[],\"events\":[],\"usedTools\":[6]}'),
 (8,'ontologyManagerUrl', 'http://ontology-manager:8282/ontologymanager/biecointerface'),
 (9,'ontologyManagerAuthKey', 'qJACs1J0apruOOJCg'),
-(10,'runtimeMonitoringGuiIframe','');
+(10,'runtimeMonitoringGuiIframe',''),
+(11,'grootUrl', 'http://groot:8283/groot/biecointerface'),
+(12,'grootAuthKey', 'qJACs1J0apruOOJCgGROOT');
 /*!40000 ALTER TABLE `setting` ENABLE KEYS */;
 UNLOCK TABLES;
 
