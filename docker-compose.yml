@@ -278,7 +278,7 @@ services:
 
     # ---- Failure Prediction (UTC) ----
     failure-prediction:
-        image: ovidiucosmabm/fpt:version6
+        image: ovidiucosmabm/fpt:version7
         ports:
             - "${FAILURE_PREDICTION_PUBLIC_PORT}:8080"
         networks:

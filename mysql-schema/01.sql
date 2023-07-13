@@ -221,7 +221,7 @@ INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`optio
 (1, '12.max-dim', 'max-dim', 'Maximum Dimension', '', 'integer', '', 1, 12),
 (1, '12.alpha', 'alpha', 'Alpha', '', 'double', '', 1, 12),
 (1, '12.delta', 'delta', 'Delta', '', 'double', '', 1, 12),
-(1, '12.text-clasifier', 'text-clasifier', 'Text Clasifier', '', 'integer', '', 1, 12);
+(1, '12.text-classifier', 'text-clasifier', 'Text Clasifier', '', 'integer', '', 1, 12);
 /*!40000 ALTER TABLE `input` ENABLE KEYS */;
 UNLOCK TABLES;
 
