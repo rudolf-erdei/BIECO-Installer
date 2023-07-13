@@ -187,7 +187,7 @@ INSERT INTO `tool` VALUES
 ( 9, b'0', b'1','http://fuzzing-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Fuzzing Tool', 'GRADIANT', 'The fuzzing tool verifies that a web page (endpoint) has neither uncovered errors nor possible vulnerabilities. To do this, it examines a descriptive file of the platform that arrives as input and performs several HTTP requests to the platform to be examined with various parameters that can obtain these possible errors. Subsequently, the responses of these requests are analyzed taking into account the responses indicated in the input file. Finally, the requests suspected of vulnerabilities are displayed.',1,0,0,3,b'0'),
 (10, b'0', b'1','http://runtime-monitoring:8181/monitoring/biecointerface','YeAm0hdkf5W9s','746gfbrenkljhGU', 'Runtime Monitoring', 'CNR', 'The Runtime Monitoring splits functionalities into independent modules that can be enacted according to the desired configuration/operational profile. The Complex Event Processor, the core part of the Runtime Monitoring, can be deployed in multiple instances on several nodes.',1,0,0,3,b'0'),
 (11, b'0', b'1','http://ontology-manager:8282/ontologymanager/biecointerface','MDM2grHjCbdRy','qJACs1J0apruOOJCg', 'Ontology Manager', 'CNR', 'Ontology Manager is a Framework responsible for managing the Core Ontology used in BIECO. It aims to support organizing concepts and their relationships related to System of Systems (SoS), Internet of Things (IoT), and System Components management and Monitoring.',1,0,0,3,b'0'),
-(12, b'0', b'1','http://failure-prediction:8080/running-models/','MDM2grHjCbdRy','6i7tygfi-95r6%2r&54e7$E&51rfioT(*&tg', 'Failure Prediction', 'UTC', 'Failure Prediction based on Machine Learning',1,0,0,3,b'0'),
+(12, b'0', b'1','http://failure-prediction:8080/orchestrator/','MDM2grHjCbdRy','6i7tygfi-95r6%2r&54e7$E&51rfioT(*&tg', 'Failure Prediction', 'UTC', 'Failure Prediction based on Machine Learning',1,0,0,3,b'0'),
 (13, b'0', b'1','http://detection-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Detection Tool', 'GRADIANT', 'Detect vulnerabilities in source code',1,0,0,3,b'0'),
 (14, b'0', b'1','http://forecasting-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Forecasting Tool', 'GRADIANT', 'Predict the exploitability of a public vulnerability. ',1,0,0,3,b'0'),
 (15, b'0', b'1','http://propagation-tool:8080/biecointerface','YUdHm0PnPJCyP','8Xoz0OlwRB+sumesL6n67nuwG7cg', 'Propagation Tool', 'GRADIANT', 'The main goal of the propagation tool is to find and indicate the components or elements a single vulnerability can affect, and therefore, its path within the system.',1,0,0,3,b'0'),
@@ -221,7 +221,7 @@ INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`optio
 (1, '12.max-dim', 'max-dim', 'Maximum Dimension', '', 'integer', '', 1, 12),
 (1, '12.alpha', 'alpha', 'Alpha', '', 'double', '', 1, 12),
 (1, '12.delta', 'delta', 'Delta', '', 'double', '', 1, 12),
-(1, '12.text-classifier', 'text-clasifier', 'Text Clasifier', '', 'integer', '', 1, 12);
+(1, '12.text-classifier', 'text-classifier', 'Text Classifier', '', 'integer', '', 1, 12);
 /*!40000 ALTER TABLE `input` ENABLE KEYS */;
 UNLOCK TABLES;
 
