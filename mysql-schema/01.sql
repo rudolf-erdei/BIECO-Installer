@@ -215,6 +215,7 @@ INSERT INTO `input` (`required`,`element_id`,`name`,`label`,`html`,`type`,`optio
 (0, '7.graphwalker_complete_result_path', 'graphwalker_complete_result_path', 'Path to graphwalker output file','','string', NULL, 1, 7),
 (1, '7.fuzzing_tool', 'fuzzing_tool', 'fuzzing tool used:','','select', 'yes,no', 1, 7),
 (0, '7.graphwalker', 'graphwalker', 'graphwalker used:','','select', 'yes,no', 1, 7),
+(0, '7.non_binary_file_complete_path', 'non_binary_file_complete_path', 'non binary file','','string', NULL, 1, 7),
 (1, '12.systemId', 'systemId', 'System ID', '', 'integer', '', 1, 12),
 (1, '12.componentId', 'componentId', 'Component ID', '', 'integer', '', 1, 12),
 (1, '12.threshold', 'threshold', 'Threshold', '', 'double', '', 1, 12),
