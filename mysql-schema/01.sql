@@ -160,7 +160,7 @@ INSERT INTO `uitool` (`id`, `title`,`url`, `methodology`) VALUES
 (1, 'Data Collection Tool','https://dct.bieco.org', 'designtime'),
 (2, 'Vulnerabilities Forecasting Tool','http://vf.bieco.org/VFWeb/', 'designtime'),
 (3, 'GraphWalker Studio','http://localhost:9090/studio.html', 'staging'),
-(4, 'Test Suite Generator','http://155.54.210.200:5555/', 'designtime'),
+(4, 'Test Suite Generator','http://localhost:5555/', 'designtime'),
 (5, 'MUD Updater','http://localhost:5555/updater', 'staging'),
 (6, 'Runtime Monitoring', 'http://localhost:4700/monitoring/biecointerface', 'runtime'),
 (7, 'Ontology Manager Admin', 'http://localhost:8282/admin/', 'runtime'),
