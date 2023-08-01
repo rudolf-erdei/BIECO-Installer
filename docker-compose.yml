@@ -89,8 +89,8 @@ services:
     # ---- Predictive Simulation (IESE) ----
     predictive-simulation:
         image: emiliacioroaica/ps_prototype:latest
-        depends_on:
-            - "activemq"
+        # depends_on:
+        #     - "activemq"
         restart: unless-stopped
         ports:
             - 4600:4600
@@ -106,19 +106,19 @@ services:
             POST_DOCKER_CONTAINER_REST_URL_ENV_VAR : "http://192.161.111.11:9000/rtes/"
             LOG_FILE_PATH_ENV_VAR : "/app/LogFile.txt"
 
-    activemq:
-        image: rmohr/activemq:latest
-        ports:
-            # - "1883:1883"  # enable only if needed
-            # - "5672:5672"  # enable only if needed
-            - "${ACTIVEMQ_ADMIN_PORT}:8161"
-            # - "61613:61613"  # enable only if needed
-            # - "61614:61614"  # enable only if needed
-            - "${ACTIVEMQ_PUBLIC_PORT}:61616"
-        volumes:
-            - bieco-data:/activemq
-        networks:
-            - bieco-net
+    # activemq:
+    #     image: rmohr/activemq:latest
+    #     ports:
+    #         # - "1883:1883"  # enable only if needed
+    #         # - "5672:5672"  # enable only if needed
+    #         - "${ACTIVEMQ_ADMIN_PORT}:8161"
+    #         # - "61613:61613"  # enable only if needed
+    #         # - "61614:61614"  # enable only if needed
+    #         - "${ACTIVEMQ_PUBLIC_PORT}:61616"
+    #     volumes:
+    #         - bieco-data:/activemq
+    #     networks:
+    #         - bieco-net
 
     # ---- Security Scorer (7B) ----
     api:
@@ -230,13 +230,24 @@ services:
 
     # ---- MUD Updater (UMU) ----
     mud-updater:
-        image: dridix/umu-bieco:umu-image
+        image: juanfranmg/mud_updater:latest
+        environment:
+            - PYTHONUNBUFFERED=1
+            - VOLUME=/platform/files
+            - HEARTBEAT=/biecoinferface
         ports:
             - "${MUD_UPDATER_PUBLIC_PORT}:5555"
         networks:
             - bieco-net
         volumes:
             - bieco-data:/platform
+
+    graphwalker:
+        image: juanfranmg/graphwalker:latest
+        ports:
+            - "9090:9090"
+        networks:
+            - bieco-net
 
     # ---- Runtime Monitoring (CNR) ----
     runtime-monitoring:
@@ -246,8 +257,8 @@ services:
             ACTIVEMQ: tcp://activemq:61616
             DB_USERNAME: bieco
             DB_PASSWORD: biecoroot
-        depends_on:
-            - "activemq"
+        # depends_on:
+        #     - "activemq"
         ports:
             - "${RUNTIME_MONITORING_PUBLIC_PORT}:8181"
         networks:

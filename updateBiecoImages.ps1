@@ -14,3 +14,5 @@ docker pull dridix/umu-bieco:umu-image
 docker pull acalabro/concern:bieco
 docker pull saiddao/ontologymanager:latest
 docker pull ovidiucosmabm/fpt:version7
+docker pull juanfranmg/mud_updater:latest
+docker pull juanfranmg/graphwalker:latest
